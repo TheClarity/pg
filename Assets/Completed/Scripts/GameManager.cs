@@ -12,19 +12,18 @@ namespace Completed
 	public class GameManager : MonoBehaviour
 	{
 		public float levelStartDelay = 2f;
-		public float turnDelay = 0.1f;
+		public float turnDelay = 1f;
 		public int playerFoodPoints = 15;
 		public static GameManager instance = null;
-		[HideInInspector] public bool playersTurn = true;
+		[HideInInspector] public bool playersTurn = false;
 
 
 		public static Text levelText;
 		public static GameObject levelImage;
 		private BoardManager boardScript;
 		public static int level = 0;
-		private List<Enemy> enemies;
 		private bool enemiesMoving;
-		private bool doingSetup = true;
+		public bool doingSetup = true;
 
 
 		void Awake()
@@ -39,7 +38,6 @@ namespace Completed
 
 			DontDestroyOnLoad(gameObject);
 
-			enemies = new List<Enemy>();
 
 			boardScript = GetComponent<BoardManager>();
 
@@ -67,34 +65,49 @@ namespace Completed
 		//Initializes the game for each level.
 		void InitGame()
 		{
+			playersTurn = false;
 			if (level == 1) {
 				playerFoodPoints = 30;
 			} else if (level == 2) {
 				playerFoodPoints = 30;
 			}
-			doingSetup = true;
+			else if (level == 3) {
+				playerFoodPoints = 35;
+			}
+			if (level < 4) {
+				doingSetup = true;
 
-			levelImage = GameObject.Find("LevelImage");
+				levelImage = GameObject.Find ("LevelImage");
 
-			levelText = GameObject.Find("LevelText").GetComponent<Text>();
+				levelText = GameObject.Find ("LevelText").GetComponent<Text> ();
 
-			levelText.text = "Stage " + level;
-			levelImage.SetActive(true);
+				levelText.text = "Stage " + level;
+				levelImage.SetActive (true);
 
-			Invoke("HideLevelImage", levelStartDelay);
+				Invoke ("HideLevelImage", levelStartDelay);
 
-			enemies.Clear();
+				boardScript.SetupScene (level);
+			} else {
 
-			boardScript.SetupScene(level);
+				levelImage = GameObject.Find ("LevelImage");
 
+				levelText = GameObject.Find ("LevelText").GetComponent<Text> ();
+
+				levelText.text = "That's all for now, Thanks for playing!";
+				levelImage.SetActive (true);
+				restartGame ();
+			}
 		}
 
-
+		void restartGame(){
+			level = 0;
+			Invoke ("Restart", 5f);
+		}
 		void HideLevelImage()
 		{
 			levelImage.SetActive(false);
-
 			doingSetup = false;
+			playersTurn = true;
 		}
 
 		//Update is called every frame.
@@ -104,13 +117,8 @@ namespace Completed
 
 				return;
 
-			StartCoroutine (MoveEnemies ());
 		}
 
-		public void AddEnemyToList(Enemy script)
-		{
-			enemies.Add(script);
-		}
 
 
 		public void GameOver()
@@ -125,27 +133,6 @@ namespace Completed
 		private void Restart ()
 		{
 			SceneManager.LoadScene (0);
-		}
-		IEnumerator MoveEnemies()
-		{
-			enemiesMoving = true;
-
-			yield return new WaitForSeconds(turnDelay);
-
-			if (enemies.Count == 0)
-			{
-				yield return new WaitForSeconds(turnDelay);
-			}
-
-			for (int i = 0; i < enemies.Count; i++)
-			{
-				enemies[i].MoveEnemy ();
-
-				yield return new WaitForSeconds(enemies[i].moveTime);
-			}
-			playersTurn = true;
-
-			enemiesMoving = false;
 		}
 	}
 }

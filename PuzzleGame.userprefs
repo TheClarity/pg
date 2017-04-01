@@ -1,14 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Completed\Scripts\SoundManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Completed\Scripts\Loader.cs">
     <Files>
-      <File FileName="Assets\Completed\Scripts\Player.cs" Line="98" Column="5" />
-      <File FileName="Assets\Completed\Scripts\Enemy.cs" Line="1" Column="1" />
-      <File FileName="Assets\Completed\Scripts\BoardManager.cs" Line="143" Column="15" />
-      <File FileName="Assets\Completed\Scripts\GameManager.cs" Line="30" Column="15" />
-      <File FileName="Assets\Completed\Scripts\MovingObject.cs" Line="1" Column="1" />
-      <File FileName="Assets\Completed\Scripts\Loader.cs" Line="1" Column="1" />
-      <File FileName="Assets\Completed\Scripts\SoundManager.cs" Line="61" Column="2" />
+      <File FileName="Assets\Completed\Scripts\Player.cs" Line="93" Column="5" />
+      <File FileName="Assets\Completed\Scripts\BoardManager.cs" Line="196" Column="46" />
+      <File FileName="Assets\Completed\Scripts\GameManager.cs" Line="103" Column="14" />
+      <File FileName="Assets\Completed\Scripts\MovingObject.cs" Line="68" Column="21" />
+      <File FileName="Assets\Completed\Scripts\Loader.cs" Line="18" Column="4" />
+      <File FileName="Assets\Completed\Scripts\PushWall.cs" Line="11" Column="41" />
+      <File FileName="Assets\Completed\Scripts\Wall.cs" Line="11" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
